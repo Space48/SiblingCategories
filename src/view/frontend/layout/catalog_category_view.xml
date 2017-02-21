@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * ${FILE_NAME}
+ *
+ * @Date        02/2017
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ * @author      @diazwatson
+ */-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="div.sidebar.additional">
+        </referenceContainer>
+    </body>
+</page>
