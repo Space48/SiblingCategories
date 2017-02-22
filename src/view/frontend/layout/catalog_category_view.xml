@@ -10,7 +10,10 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceContainer name="div.sidebar.additional">
+        <referenceBlock name="catalog.leftnav" remove="true" />
+
+        <referenceContainer name="sidebar.main">
+            <block class="Space48\SiblingCategories\Block\SiblingCategories" name="sibling.categories" before="-" template="Space48_SiblingCategories::sibling-categories.phtml" as="siblingCategories"/>
         </referenceContainer>
     </body>
 </page>

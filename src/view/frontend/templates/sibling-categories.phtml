@@ -1,0 +1,25 @@
+<?php /** @var \Space48\SiblingCategories\Block\SiblingCategories $block  */ ?>
+<h1><?php echo $block->getPotato(); ?></h1>
+<?php if (!$block->getCategory()) {
+    return;
+} ?>
+<?php $_categories = $block->getCurrentChildCategories(); ?>
+<?php $_count = is_array($_categories) ? count($_categories) : $_categories->count(); ?>
+<?php if ($_count): ?>
+    <div class="block filter">
+        <div class="block-content filter-content">
+            <div class="select-wrap">
+                <select onchange="window.location=this.value">
+                    <option selected disabled value=""><?php /* @escapeNotVerified */ echo __('Subcategories') ?></option>
+                    <?php foreach ($_categories as $_category): ?>
+                        <?php if ($_category->getIsActive()): ?>
+                            <option value="<?php /* @escapeNotVerified */ echo $block->getCategoryUrl($_category) ?>">
+                                <?php echo $block->escapeHtml($_category->getName()) ?>
+                            </option>
+                        <?php endif; ?>
+                    <?php endforeach ?>
+                </select>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
