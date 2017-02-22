@@ -12,16 +12,30 @@ class SiblingCategories extends Template
 
     protected $_navigation;
 
+    public function __construct(Template\Context $context, Navigation $navigation, array $data = [])
+    {
+        parent::__construct($context, $data);
+        $this->_navigation = $navigation;
+    }
 
     public function getCategory()
     {
         return $this->_navigation->getCategory();
     }
 
-    protected function _construct(Navigation $navigation)
+    public function getCurrentChildCategories()
     {
-        parent::_construct();
-        $this->_navigation = $navigation;
+        return $this->_navigation->getCurrentChildCategories();
+    }
+
+    public function getCategoryUrl($_category)
+    {
+        return $this->_navigation->getCategoryUrl($_category);
+    }
+
+    public function getPotato()
+    {
+        return __("Hello I am Alive");
     }
 }
 
