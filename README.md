@@ -18,4 +18,4 @@ From the terminal execute the following:
 
 then
 
-`composer require "space48/space48/siblingcategories:dev-master"`
+`composer require "space48/siblingcategories:dev-master"`
