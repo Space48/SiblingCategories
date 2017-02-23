@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <!--
 /**
- * ${FILE_NAME}
+ * Space48_SiblingCategories
  *
+ * @category    Space48
+ * @package     Space48_SiblingCategories
  * @Date        02/2017
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  * @author      @diazwatson
@@ -10,10 +12,8 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceBlock name="catalog.leftnav" remove="true" />
-
-        <referenceContainer name="sidebar.main">
-            <block class="Space48\SiblingCategories\Block\SiblingCategories" name="sibling.categories" before="-" template="Space48_SiblingCategories::sibling-categories.phtml" as="siblingCategories"/>
-        </referenceContainer>
+        <referenceBlock name="div.sidebar.main">
+            <block class="Space48\SiblingCategories\Block\SiblingCategories" name="subling.categories" before="-" template="Space48_SiblingCategories::sibling-categories.phtml" />
+        </referenceBlock>
     </body>
 </page>

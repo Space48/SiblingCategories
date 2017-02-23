@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Space48_SiblingCategories
+ *
+ * @category    Space48
+ * @package     Space48_SiblingCategories
+ * @Date        02/2017
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ * @author      @diazwatson
+ */-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="space48_tab">
+            <label>Space48</label>
+        </tab>
+        <section id="space48_siblingcategories" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Sibling Categories</label>
+            <tab>space48_tab</tab>
+            <resource>Space48_SiblingCategories::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_first_level" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show in first level category</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Bear in mind that at first level category there isn't parent's siblings, therefore siblings of the first level category will be shown instead.]]></comment>
+                </field>
+                <!--<field id="add_count" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<label>Add product count</label>-->
+                    <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                    <!--<comment><![CDATA[Add products count to the list of categories.]]></comment>-->
+                <!--</field>-->
+            </group>
+        </section>
+    </system>
+</config>
