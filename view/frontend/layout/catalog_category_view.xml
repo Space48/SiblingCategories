@@ -13,7 +13,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="div.sidebar.main">
-            <block class="Space48\SiblingCategories\Block\SiblingCategories" name="subling.categories" before="-" template="Space48_SiblingCategories::sibling-categories.phtml" />
+            <block class="Space48\SiblingCategories\Block\SiblingCategories" name="sibling.categories" before="-" template="Space48_SiblingCategories::sibling-categories.phtml" />
         </referenceBlock>
     </body>
 </page>
