@@ -12,12 +12,12 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="space48_tab">
+        <tab id="space48" translate="label" sortOrder="105">
             <label>Space48</label>
         </tab>
         <section id="space48_siblingcategories" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Sibling Categories</label>
-            <tab>space48_tab</tab>
+            <tab>space48</tab>
             <resource>Space48_SiblingCategories::config</resource>
             <group id="general" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>General</label>
