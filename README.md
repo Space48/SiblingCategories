@@ -14,7 +14,7 @@ To install this module copy the code from this repo to `app/code/Space48/Sibling
 
 From the terminal execute the following:
 
-`composer config repositories.space48-price-slider vcs git@github.com:Space48/SiblingCategories.git`
+`composer config repositories.space48-sibling-categories vcs git@github.com:Space48/SiblingCategories.git`
 
 then
 
