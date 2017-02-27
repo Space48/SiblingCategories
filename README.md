@@ -1,4 +1,4 @@
-# Space48_SiblingCategories
+SiblingCategories
 
 While browsing a subcategory page on the current site there exists a list of sibling subcategories in the sidebar. 
 
