@@ -16,7 +16,6 @@ namespace Space48\SiblingCategories\Block;
 
 use Magento\Catalog\Block\Navigation;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
-use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Space48\SiblingCategories\Helper\Data;
@@ -35,15 +34,13 @@ class SiblingCategories extends Template
     protected $_helper;
 
     /**
-     * @var Registry
+     * @var CollectionFactory
      */
-    private $registry;
     private $_productCollectionFactory;
 
     public function __construct(Context $context,
                                 Navigation $navigation,
                                 Data $helper,
-                                Registry $registry,
                                 CollectionFactory $productCollectionFactory,
                                 array $data = [])
     {
@@ -51,11 +48,11 @@ class SiblingCategories extends Template
         $this->navigation = $navigation;
         $this->_productCollectionFactory = $productCollectionFactory;
         $this->_helper = $helper;
-        $this->registry = $registry;
         parent::__construct($context, $data);
     }
 
     /**
+     * Get Sibling Categories
      * @return \Magento\Catalog\Model\Category[]|\Magento\Catalog\Model\ResourceModel\Category\Collection|null
      */
     public function getSiblingCategories()
@@ -69,24 +66,24 @@ class SiblingCategories extends Template
             $categories = $this->getCurrentParent()->getParentCategory()->getChildrenCategories();
         }
 
-        if (!is_null($categories) && $this->addCount()) {
-            $this->addCountToCategories($categories);
-        }
-
         return $categories;
     }
 
     /**
+     * Check if Category is fist level
+     *
      * @param $category
      *
      * @return bool
      */
-    private function isFirstLevel($category)
+    private function isFirstLevel($category): bool
     {
         return $category->getData('level') == 1 ? true : false;
     }
 
     /**
+     * Get Parent of current Category
+     *
      * @return \Magento\Catalog\Model\Category
      */
     protected function getCurrentParent()
@@ -99,16 +96,25 @@ class SiblingCategories extends Template
      */
     public function getCurrentCategory()
     {
-//        return $this->registry->registry('current_category');
         return $this->navigation->getCurrentCategory();
     }
 
     /**
      * @return bool
      */
-    private function showInFirstLevel()
+    private function showInFirstLevel(): bool
     {
         return (bool) $this->_helper->showFirstLevel();
+    }
+
+    /**
+     * @param $_category
+     *
+     * @return string
+     */
+    public function getCategoryUrl($_category): string
+    {
+        return $this->navigation->getCategoryUrl($_category);
     }
 
     /**
@@ -122,26 +128,9 @@ class SiblingCategories extends Template
     /**
      * @param $categories
      */
-    protected function addCountToCategories($categories)
-    {
-        /** @var \Magento\Catalog\Model\ResourceModel\Product\Collection $productCollection */
-        $productCollection = $this->_productCollectionFactory->create();
-        $this->getCurrentCategory()->prepareProductCollection($productCollection);
-        $productCollection->addCountToCategories($categories);
-        $this->removeCurrentCategory($categories);
-    }
-
-    /**
-     * @param $categories
-     */
     protected function removeCurrentCategory($categories)
     {
         $categories->removeItemByKey($this->getCurrentCategory()->getId());
-    }
-
-    public function getCategoryUrl($_category)
-    {
-        return $this->navigation->getCategoryUrl($_category);
     }
 }
 

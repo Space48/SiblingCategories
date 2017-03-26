@@ -29,11 +29,11 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[Bear in mind that at first level category there isn't parent's siblings, therefore siblings of the first level category will be shown instead.]]></comment>
                 </field>
-                <field id="add_count" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Add product count</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment><![CDATA[Add products count to the list of categories.]]></comment>
-                </field>
+                <!--<field id="add_count" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<label>Add product count</label>-->
+                    <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                    <!--<comment><![CDATA[Add products count to the list of categories.]]></comment>-->
+                <!--</field>-->
             </group>
         </section>
     </system>

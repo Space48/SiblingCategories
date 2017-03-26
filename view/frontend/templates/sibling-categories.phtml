@@ -1,20 +1,22 @@
 <?php /** @var \Space48\SiblingCategories\Block\SiblingCategories $block */ ?>
 <?php $_categories = $block->getSiblingCategories(); ?>
-    <?php if (count($_categories)): ?>
-        <div class="block filter">
-            <div class="block-content filter-content">
-                <div class="select-wrap">
-                    <select onchange="window.location=this.value" title="<?= __('More Subcategories') ?>">
-                        <option selected disabled value=""><?= /* @escapeNotVerified */  __('More Subcategories') ?></option>
-                        <?php foreach ($_categories as $_category): ?>
-                            <?php if ($_category->getIsActive()): ?>
-                                <option value="<?php /* @escapeNotVerified */ echo $block->getCategoryUrl($_category) ?>">
-                                    <?php echo $block->escapeHtml($_category->getName()) ?>
-                                </option>
-                            <?php endif; ?>
-                        <?php endforeach ?>
-                    </select>
-                </div>
+<?php if (count($_categories)): ?>
+    <div class="block filter">
+        <div class="block-content filter-content">
+            <div class="select-wrap">
+                <select onchange="window.location=this.value" title="<?= __('More Subcategories') ?>">
+                    <option selected disabled value=""><?= /* @escapeNotVerified */
+                        __('More Subcategories') ?></option>
+                    <?php foreach ($_categories as $_category): ?>
+                        <?php if ($_category->getIsActive()): ?>
+                            <option value="<?php /* @escapeNotVerified */
+                            echo $block->getCategoryUrl($_category) ?>">
+                                <?php echo $block->escapeHtml($_category->getName()) ?>
+                            </option>
+                        <?php endif; ?>
+                    <?php endforeach ?>
+                </select>
             </div>
         </div>
-    <?php endif; ?>
+    </div>
+<?php endif; ?>
