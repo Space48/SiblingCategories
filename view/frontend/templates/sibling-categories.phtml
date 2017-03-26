@@ -1,12 +1,6 @@
 <?php /** @var \Space48\SiblingCategories\Block\SiblingCategories $block */ ?>
-
-<?php if (!$block->getCategory() || !$block->canShow()) {
-    return;
-} ?>
-
-<?php $_categories = $block->getCurrentSiblingCategories(); ?>
-<?php $_count = is_array($_categories) ? count($_categories) : $_categories->count(); ?>
-    <?php if ($_count): ?>
+<?php $_categories = $block->getSiblingCategories(); ?>
+    <?php if (count($_categories)): ?>
         <div class="block filter">
             <div class="block-content filter-content">
                 <div class="select-wrap">

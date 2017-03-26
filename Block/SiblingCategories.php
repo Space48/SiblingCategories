@@ -10,55 +10,67 @@
  * @author      @diazwatson
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Space48\SiblingCategories\Block;
 
 use Magento\Catalog\Block\Navigation;
-use Magento\Catalog\Helper\Category;
-use Magento\Catalog\Model\CategoryFactory;
-use Magento\Catalog\Model\Indexer\Category\Flat\State;
-use Magento\Catalog\Model\Layer\Resolver;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
-use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Framework\App\Http\Context as HttpContext;
 use Magento\Framework\Registry;
+use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
-use Magento\Store\Model\ScopeInterface;
+use Space48\SiblingCategories\Helper\Data;
 
-class SiblingCategories extends Navigation
+class SiblingCategories extends Template
 {
 
+    /**
+     * @var Navigation
+     */
+    protected $navigation;
+
+    /**
+     * @var Data
+     */
+    protected $_helper;
+
+    /**
+     * @var Registry
+     */
+    private $registry;
+    private $_productCollectionFactory;
+
     public function __construct(Context $context,
-                                CategoryFactory $categoryFactory,
-                                CollectionFactory $productCollectionFactory,
-                                Resolver $layerResolver,
-                                HttpContext $httpContext,
-                                Category $catalogCategory,
+                                Navigation $navigation,
+                                Data $helper,
                                 Registry $registry,
-                                State $flatState,
-                                ScopeConfigInterface $scopeConfig,
+                                CollectionFactory $productCollectionFactory,
                                 array $data = [])
     {
-        $this->_scopeConfig = $scopeConfig;
-        parent::__construct($context, $categoryFactory, $productCollectionFactory, $layerResolver, $httpContext,
-            $catalogCategory, $registry, $flatState, $data);
+
+        $this->navigation = $navigation;
+        $this->_productCollectionFactory = $productCollectionFactory;
+        $this->_helper = $helper;
+        $this->registry = $registry;
+        parent::__construct($context, $data);
     }
 
     /**
      * @return \Magento\Catalog\Model\Category[]|\Magento\Catalog\Model\ResourceModel\Category\Collection|null
      */
-    public function getCurrentSiblingCategories()
+    public function getSiblingCategories()
     {
         $categories = null;
         if ($this->isFirstLevel($this->getCurrentParent())) {
             if ($this->showInFirstLevel()) {
                 $categories = $this->getCurrentParent()->getChildrenCategories();
-//                $this->addCountToCategories($categories);
             }
         } else {
             $categories = $this->getCurrentParent()->getParentCategory()->getChildrenCategories();
-//            $this->addCountToCategories($categories);
+        }
+
+        if (!is_null($categories) && $this->addCount()) {
+            $this->addCountToCategories($categories);
         }
 
         return $categories;
@@ -79,7 +91,16 @@ class SiblingCategories extends Navigation
      */
     protected function getCurrentParent()
     {
-        return $this->_catalogLayer->getCurrentCategory()->getParentCategory();
+        return $this->getCurrentCategory()->getParentCategory();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCurrentCategory()
+    {
+//        return $this->registry->registry('current_category');
+        return $this->navigation->getCurrentCategory();
     }
 
     /**
@@ -87,7 +108,15 @@ class SiblingCategories extends Navigation
      */
     private function showInFirstLevel()
     {
-        return (bool) $this->getConfig('show_first_level');
+        return (bool) $this->_helper->showFirstLevel();
+    }
+
+    /**
+     * @return bool
+     */
+    protected function addCount(): bool
+    {
+        return $this->_helper->addCount();
     }
 
     /**
@@ -95,13 +124,11 @@ class SiblingCategories extends Navigation
      */
     protected function addCountToCategories($categories)
     {
-        if ($this->getConfig('add_count')) {
-            /** @var \Magento\Catalog\Model\ResourceModel\Product\Collection $productCollection */
-            $productCollection = $this->_productCollectionFactory->create();
-            $this->_catalogLayer->prepareProductCollection($productCollection);
-            $productCollection->addCountToCategories($categories);
-            $this->removeCurrentCategory($categories);
-        }
+        /** @var \Magento\Catalog\Model\ResourceModel\Product\Collection $productCollection */
+        $productCollection = $this->_productCollectionFactory->create();
+        $this->getCurrentCategory()->prepareProductCollection($productCollection);
+        $productCollection->addCountToCategories($categories);
+        $this->removeCurrentCategory($categories);
     }
 
     /**
@@ -109,26 +136,12 @@ class SiblingCategories extends Navigation
      */
     protected function removeCurrentCategory($categories)
     {
-        $categories->removeItemByKey($this->_catalogLayer->getCurrentCategory()->getId());
+        $categories->removeItemByKey($this->getCurrentCategory()->getId());
     }
 
-    /**
-     * @return bool
-     */
-    public function canShow()
+    public function getCategoryUrl($_category)
     {
-        return $this->getConfig('enabled') && !is_null($this->getCurrentSiblingCategories());
-    }
-
-    /**
-     * @param $field
-     *
-     * @return bool
-     */
-    private function getConfig($field)
-    {
-        return (bool) $this->_scopeConfig->getValue("space48_siblingcategories/general/" . $field,
-            ScopeInterface::SCOPE_STORE);
+        return $this->navigation->getCategoryUrl($_category);
     }
 }
 

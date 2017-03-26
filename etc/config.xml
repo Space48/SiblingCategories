@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Space48_SiblingCategories
+ *
+ * @category    Space48
+ * @package     Space48_SiblingCategories
+ * @Date        02/2017
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ * @author      @diazwatson
+ */-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <space48_siblingcategories>
+            <general>
+                <enabled>0</enabled>
+                <show_first_level>0</show_first_level>
+                <add_count>0</add_count>
+            </general>
+        </space48_siblingcategories>
+    </default>
+</config>
