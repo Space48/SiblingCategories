@@ -57,16 +57,11 @@ class SiblingCategories extends Template
      */
     public function getSiblingCategories()
     {
-        $categories = null;
-        if ($this->isFirstLevel($this->getCurrentParent())) {
-            if ($this->showInFirstLevel()) {
-                $categories = $this->getCurrentParent()->getChildrenCategories();
-            }
-        } else {
-            $categories = $this->getCurrentParent()->getParentCategory()->getChildrenCategories();
+        if ($this->isFirstLevel($this->getCurrentCategory()) && $this->showInFirstLevel() == false) {
+            return [];
         }
 
-        return $categories;
+        return $this->getCurrentParent()->getChildrenCategories();
     }
 
     /**
@@ -78,7 +73,7 @@ class SiblingCategories extends Template
      */
     private function isFirstLevel($category): bool
     {
-        return $category->getData('level') == 1 ? true : false;
+        return $category->getData('level') == 2 ? true : false;
     }
 
     /**
