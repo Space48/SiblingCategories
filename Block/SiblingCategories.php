@@ -107,7 +107,7 @@ class SiblingCategories extends Template
      *
      * @return string
      */
-    public function getCategoryUrl($_category): string
+    public function getCategoryUrl($_category)
     {
         return $this->navigation->getCategoryUrl($_category);
     }
