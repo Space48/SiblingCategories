@@ -18,7 +18,7 @@ From the terminal execute the following:
 
 then
 
-`composer require "space48/siblingcategories:1.0.2"`
+`composer require "space48/siblingcategories:{release-version}"`
 
 ## How to use it
 Once installed, go to the `Admin Penel -> Stores -> Configuration -> Space48 -> Sibling Categories` and `enable` the extension.

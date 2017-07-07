@@ -31,28 +31,30 @@ class SiblingCategories extends Template
     /**
      * @var Data
      */
-    protected $_helper;
+    protected $helper;
 
     /**
      * @var CollectionFactory
      */
-    private $_productCollectionFactory;
+    private $productCollectionFactory;
 
-    public function __construct(Context $context,
-                                Navigation $navigation,
-                                Data $helper,
-                                CollectionFactory $productCollectionFactory,
-                                array $data = [])
-    {
+    public function __construct(
+        Context $context,
+        Navigation $navigation,
+        Data $helper,
+        CollectionFactory $productCollectionFactory,
+        array $data = []
+    ) {
 
         $this->navigation = $navigation;
-        $this->_productCollectionFactory = $productCollectionFactory;
-        $this->_helper = $helper;
+        $this->productCollectionFactory = $productCollectionFactory;
+        $this->helper = $helper;
         parent::__construct($context, $data);
     }
 
     /**
      * Get Sibling Categories
+     *
      * @return \Magento\Catalog\Model\Category[]|\Magento\Catalog\Model\ResourceModel\Category\Collection|null
      */
     public function getSiblingCategories()
@@ -67,7 +69,7 @@ class SiblingCategories extends Template
     /**
      * Check if Category is fist level
      *
-     * @param $category
+     * @param $category \Magento\Catalog\Model\Category
      *
      * @return bool
      */
@@ -77,17 +79,7 @@ class SiblingCategories extends Template
     }
 
     /**
-     * Get Parent of current Category
-     *
      * @return \Magento\Catalog\Model\Category
-     */
-    protected function getCurrentParent()
-    {
-        return $this->getCurrentCategory()->getParentCategory();
-    }
-
-    /**
-     * @return mixed
      */
     public function getCurrentCategory()
     {
@@ -99,7 +91,17 @@ class SiblingCategories extends Template
      */
     private function showInFirstLevel(): bool
     {
-        return (bool) $this->_helper->showFirstLevel();
+        return (bool) $this->helper->showFirstLevel();
+    }
+
+    /**
+     * Get Parent of current Category
+     *
+     * @return \Magento\Catalog\Model\Category
+     */
+    private function getCurrentParent()
+    {
+        return $this->getCurrentCategory()->getParentCategory();
     }
 
     /**
@@ -115,15 +117,15 @@ class SiblingCategories extends Template
     /**
      * @return bool
      */
-    protected function addCount(): bool
+    public function addCount(): bool
     {
-        return $this->_helper->addCount();
+        return $this->helper->addCount();
     }
 
     /**
      * @param $categories
      */
-    protected function removeCurrentCategory($categories)
+    private function removeCurrentCategory($categories)
     {
         $categories->removeItemByKey($this->getCurrentCategory()->getId());
     }
