@@ -15,7 +15,20 @@ class Data extends AbstractHelper
      */
     public function isEnabled()
     {
-        return $this->_getConfig('enabled');
+        return $this->getConfig('enabled');
+    }
+
+    /**
+     * @param $field
+     *
+     * @return string
+     */
+    private function getConfig($field)
+    {
+        return $this->scopeConfig->getValue(
+            "space48_siblingcategories/general/" . $field,
+            ScopeInterface::SCOPE_STORE
+        );
     }
 
     /**
@@ -23,7 +36,7 @@ class Data extends AbstractHelper
      */
     public function showFirstLevel()
     {
-        return $this->_getConfig('show_first_level');
+        return $this->getConfig('show_first_level');
     }
 
     /**
@@ -31,18 +44,7 @@ class Data extends AbstractHelper
      */
     public function addCount()
     {
-        return $this->_getConfig('add_count');
-    }
-
-    /**
-     * @param $field
-     *
-     * @return bool
-     */
-    protected function _getConfig($field)
-    {
-        return (bool) $this->scopeConfig->getValue("space48_siblingcategories/general/" . $field,
-            ScopeInterface::SCOPE_STORE);
+        return $this->getConfig('add_count');
     }
 }
 
