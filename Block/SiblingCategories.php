@@ -38,12 +38,31 @@ class SiblingCategories extends Template
      */
     private $_productCollectionFactory;
 
+<<<<<<< Updated upstream
     public function __construct(Context $context,
                                 Navigation $navigation,
                                 Data $helper,
                                 CollectionFactory $productCollectionFactory,
                                 array $data = [])
     {
+=======
+    /**
+     * SiblingCategories constructor.
+     *
+     * @param Context           $context
+     * @param Navigation        $navigation
+     * @param Data              $helper
+     * @param CollectionFactory $productCollectionFactory
+     * @param array             $data
+     */
+    public function __construct(
+        Context $context,
+        Navigation $navigation,
+        Data $helper,
+        CollectionFactory $productCollectionFactory,
+        array $data = []
+    ) {
+>>>>>>> Stashed changes
 
         $this->navigation = $navigation;
         $this->_productCollectionFactory = $productCollectionFactory;
@@ -71,7 +90,7 @@ class SiblingCategories extends Template
      *
      * @return bool
      */
-    private function isFirstLevel($category): bool
+    private function isFirstLevel($category)
     {
         return $category->getData('level') == 2 ? true : false;
     }
@@ -89,9 +108,15 @@ class SiblingCategories extends Template
     /**
      * @return mixed
      */
+<<<<<<< Updated upstream
     public function getCurrentCategory()
     {
         return $this->navigation->getCurrentCategory();
+=======
+    private function showInFirstLevel()
+    {
+        return $this->helper->showFirstLevel();
+>>>>>>> Stashed changes
     }
 
     /**
@@ -115,10 +140,15 @@ class SiblingCategories extends Template
     /**
      * @return bool
      */
+<<<<<<< Updated upstream
     protected function addCount(): bool
+=======
+    public function addCount():bool
+>>>>>>> Stashed changes
     {
         return $this->_helper->addCount();
     }
+<<<<<<< Updated upstream
 
     /**
      * @param $categories
@@ -127,5 +157,7 @@ class SiblingCategories extends Template
     {
         $categories->removeItemByKey($this->getCurrentCategory()->getId());
     }
+=======
+>>>>>>> Stashed changes
 }
 
