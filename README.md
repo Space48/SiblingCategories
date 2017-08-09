@@ -1,4 +1,7 @@
 # SiblingCategories
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Space48/SiblingCategories/badges/quality-score.png?b=master&s=06f68f1fb3bde0854e958cc9105bc75867c652d8)](https://scrutinizer-ci.com/g/Space48/SiblingCategories/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/Space48/SiblingCategories/badges/build.png?b=master&s=db119b0846f72eac4e0ea527668767646a6af013)](https://scrutinizer-ci.com/g/Space48/SiblingCategories/build-status/master)
+[![Code Coverage](https://scrutinizer-ci.com/g/Space48/SiblingCategories/badges/coverage.png?b=master&s=73de43f17e5ae4c40ff604a4751ac9ea3d652206)](https://scrutinizer-ci.com/g/Space48/SiblingCategories/?branch=master)
 
 While browsing a subcategory page on the current site there exists a list of sibling subcategories in the sidebar. 
 
